@@ -1,0 +1,26 @@
+mads 2.1.4 build 1 (22 Oct 21)
+Source: main.asm
+     1 				; Eric How Chun Lun
+     2 				; github to be added
+     3 				; 6502 Assembly Run!
+     4 				; Hoping this will go well
+     5 				; Assemble in MADS -1 -t
+     6 				; Initial Setup
+     7
+     8 				    org $2000
+     9
+    10 = 0058			SAVMSC = $0058 ; Screen Memory address
+    11
+    12 FFFF> 2000-201A> A0 00	    ldy #0
+    13 2002			loop
+    14 2002 B9 0F 20		    lda hello,y
+    15 2005 91 58		    sta (SAVMSC),y
+    16 2007 C8			    iny
+    17 2008 C0 0C		    cpy #12
+    18 200A D0 F6		    bne loop 
+    19
+    20 200C 4C 0C 20		    jmp *
+    21
+    22 				; Data
+    23 200F			hello
+    24 200F 28 25 2C 2C 2F 00 +     .byte "HELLO WORLD!"
